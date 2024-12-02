@@ -16,6 +16,11 @@ class TestAPI(unittest.TestCase):
         response = self.app.post('/sum', json=payload)
         data = response.get_json()
         self.assertEqual(data['result'], -2)
+    
+    def test_invalid_input(self):
+        response = self.app.post('/sum/result/abc')
+        self.assertEqual(response.status_code, 404)
+
 
 if __name__ == "__main__":
     unittest.main()
