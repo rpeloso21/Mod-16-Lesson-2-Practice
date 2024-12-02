@@ -34,7 +34,7 @@ class SumSchema(ma.Schema):
 
 sums_schema = SumSchema(many=True)
 
-@app.route("/sum", method=['GET'])
+@app.route("/sum", methods=['GET'])
 def find_all():
     sums = db.session.execute(db.select(Sum)).scalars()
     return sums_schema.jsonify(sums), 200
